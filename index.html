@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Expense Tracker | Smart Finance</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- ANIMATED BACKGROUND -->
+    <div class="background-animation">
+        <span class="orb orb-one"></span>
+        <span class="orb orb-two"></span>
+        <span class="orb orb-three"></span>
+    </div>
+
+
+    <main class="app">
+
+
+        <div class="top-moving-line">
+            Designed & Developed by Riya
+        </div>
+
+        <!-- HEADER -->
+        <header class="topbar">
+
+            <div>
+                <p class="welcome">PERSONAL FINANCE</p>
+
+                <h1>
+                    Expense Tracker
+                </h1>
+
+                <p class="subtitle">
+                    Track smarter. Spend better. Save more.
+                </p>
+            </div>
+
+            <button id="themeBtn" class="theme-btn">
+                🌙
+            </button>
+
+        </header>
+
+
+        <!-- SUMMARY -->
+        <section class="summary-grid">
+
+            <div class="summary-card">
+                <div class="card-icon">💰</div>
+
+                <div>
+                    <p>Total Spent</p>
+                    <h2>₹<span id="totalSpent">0</span></h2>
+                </div>
+            </div>
+
+
+            <div class="summary-card">
+                <div class="card-icon">🧾</div>
+
+                <div>
+                    <p>Total Expenses</p>
+                    <h2 id="expenseCount">0</h2>
+                </div>
+            </div>
+
+
+            <div class="summary-card">
+                <div class="card-icon">📊</div>
+
+                <div>
+                    <p>Average Expense</p>
+                    <h2>₹<span id="averageSpent">0</span></h2>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- FINANCIAL HEALTH -->
+        <section class="health-card">
+
+            <div class="health-info">
+
+                <div>
+                    <p class="small-title">FINANCIAL HEALTH</p>
+
+                    <h2>
+                        <span id="healthScore">100</span>/100
+                        <span id="healthEmoji">💚</span>
+                    </h2>
+
+                    <p id="healthMessage">
+                        Excellent! Your spending looks healthy.
+                    </p>
+                </div>
+
+                <div class="score-circle">
+                    <div>
+                        <strong id="scoreNumber">100</strong>
+                        <small>Score</small>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="health-bar">
+                <div id="healthProgress"></div>
+            </div>
+
+        </section>
+
+
+        <!-- BUDGET + SAVINGS -->
+        <section class="goal-grid">
+
+            <div class="goal-card">
+
+                <div class="goal-header">
+
+                    <div>
+                        <p>Monthly Budget</p>
+                        <h2>₹<span id="budgetAmount">0</span></h2>
+                    </div>
+
+                    <button id="budgetBtn">
+                        Set Budget
+                    </button>
+
+                </div>
+
+                <div class="progress-bar">
+                    <div id="budgetProgress" class="progress-fill"></div>
+                </div>
+
+                <p id="budgetMessage">
+                    Set a budget to track your spending.
+                </p>
+
+            </div>
+
+
+            <div class="goal-card">
+
+                <div class="goal-header">
+
+                    <div>
+                        <p>Savings Goal</p>
+                        <h2>₹<span id="goalAmount">0</span></h2>
+                    </div>
+
+                    <button id="goalBtn">
+                        Set Goal
+                    </button>
+
+                </div>
+
+                <div class="progress-bar">
+                    <div id="savingsProgress" class="progress-fill"></div>
+                </div>
+
+                <p id="savingsMessage">
+                    Set a savings goal.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ADD EXPENSE -->
+        <section class="expense-form-card">
+
+            <div class="section-title">
+
+                <p>QUICK ACTION</p>
+
+                <h2>Add New Expense</h2>
+
+            </div>
+
+
+            <form id="expenseForm">
+
+                <div class="form-group">
+
+                    <label for="expenseName">
+                        Expense Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="expenseName"
+                        placeholder="e.g. Lunch"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="expenseAmount">
+                        Amount
+                    </label>
+
+                    <input
+                        type="number"
+                        id="expenseAmount"
+                        placeholder="₹ 0"
+                        min="1"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="expenseCategory">
+                        Category
+                    </label>
+
+                    <select id="expenseCategory">
+
+                        <option value="Food">🍔 Food</option>
+                        <option value="Travel">🚗 Travel</option>
+                        <option value="Shopping">🛍️ Shopping</option>
+                        <option value="Bills">💡 Bills</option>
+                        <option value="Education">📚 Education</option>
+                        <option value="Health">❤️ Health</option>
+                        <option value="Other">📦 Other</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="expenseMood">
+                        Spending Type
+                    </label>
+
+                    <select id="expenseMood">
+
+                        <option value="Need">💚 Need</option>
+                        <option value="Want">🛍️ Want</option>
+                        <option value="Routine">🔄 Routine</option>
+                        <option value="Emergency">🚨 Emergency</option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="add-btn">
+
+                    + Add Expense
+
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- ANALYTICS -->
+        <section class="analytics-grid">
+
+            <!-- CHART -->
+            <div class="analytics-card chart-card">
+
+                <div class="section-heading">
+
+                    <div>
+                        <p>ANALYTICS</p>
+                        <h2>Spending Overview</h2>
+
+                        <select id="chartType">
+                            <option value="doughnut">🍩 Doughnut</option>
+                            <option value="pie">🥧 Pie</option>
+                            <option value="bar">📊 Bar</option>
+                            <option value="line">📈 Line</option>
+                        </select>
+
+                    </div>
+
+                    <span>Live</span>
+
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="expenseChart"></canvas>
+                </div>
+
+            </div>
+
+
+            <!-- SPENDING MOOD -->
+            <div class="analytics-card">
+
+                <div class="section-heading">
+
+                    <div>
+                        <p>BEHAVIOUR</p>
+                        <h2>🧠 Spending Mood</h2>
+                    </div>
+
+                    <span id="spendingMood">
+                        😊 Balanced
+                    </span>
+
+                </div>
+
+
+                <div class="mood-stats">
+
+                    <div>
+                        <span>💚 Need</span>
+                        <strong id="needCount">0</strong>
+                    </div>
+
+                    <div>
+                        <span>🛍️ Want</span>
+                        <strong id="wantCount">0</strong>
+                    </div>
+
+                    <div>
+                        <span>🔄 Routine</span>
+                        <strong id="routineCount">0</strong>
+                    </div>
+
+                    <div>
+                        <span>🚨 Emergency</span>
+                        <strong id="emergencyCount">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="streak-box">
+
+                    <span>🔥</span>
+
+                    <div>
+                        <small>Spending Streak</small>
+
+                        <strong>
+                            <span id="streakCount">0</span> days
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SMART INSIGHTS -->
+        <section class="analytics-card">
+
+            <div class="section-heading">
+
+                <div>
+                    <p>AI-STYLE ANALYSIS</p>
+                    <h2>💡 Smart Insights</h2>
+
+                    <button onclick="showMoneyTip()">💡 Money Tip</button>
+                </div>
+
+            </div>
+
+            <div id="insights">
+
+                <p class="empty-text">
+                    Add expenses to receive smart insights.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- CATEGORY BREAKDOWN -->
+        <section class="analytics-card category-card">
+
+            <div class="section-heading">
+
+                <div>
+                    <p>BREAKDOWN</p>
+                    <h2>📊 Category Spending</h2>
+                </div>
+
+            </div>
+
+            <div id="categoryBreakdown"></div>
+
+        </section>
+
+
+        <!-- EXPENSE HISTORY -->
+        <section class="list-section">
+
+            <div class="list-header">
+
+                <div>
+                    <p>YOUR ACTIVITY</p>
+                    <h2>Expense History</h2>
+                </div>
+
+                <button id="sortBtn" class="sort-btn">
+                    ↕ Sort: Newest
+                </button>
+
+            </div>
+
+
+            <div class="filters">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="🔍 Search expense...">
+
+
+                <select id="filterCategory">
+
+                    <option value="All">All Categories</option>
+                    <option value="Food">🍔 Food</option>
+                    <option value="Travel">🚗 Travel</option>
+                    <option value="Shopping">🛍️ Shopping</option>
+                    <option value="Bills">💡 Bills</option>
+                    <option value="Education">📚 Education</option>
+                    <option value="Health">❤️ Health</option>
+                    <option value="Other">📦 Other</option>
+
+                </select>
+
+
+                <select id="filterMood">
+
+                    <option value="All">All Spending Types</option>
+                    <option value="Need">💚 Need</option>
+                    <option value="Want">🛍️ Want</option>
+                    <option value="Routine">🔄 Routine</option>
+                    <option value="Emergency">🚨 Emergency</option>
+
+                </select>
+
+            </div>
+
+
+            <div id="expenseList"></div>
+
+
+            <p id="emptyMessage" class="empty-message">
+                No expenses found.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- TOAST -->
+    <div id="toast" class="toast">
+        Expense added successfully!
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
